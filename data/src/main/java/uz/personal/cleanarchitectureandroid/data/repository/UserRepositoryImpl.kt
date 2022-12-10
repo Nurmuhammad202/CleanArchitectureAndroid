@@ -1,7 +1,7 @@
 package uz.personal.cleanarchitectureandroid.data.repository
 
-import uz.personal.cleanarchitectureandroid.data.storage.UseStorage
-import uz.personal.cleanarchitectureandroid.data.storage.models.User
+import uz.personal.cleanarchitectureandroid.data.storage.sharedPrefMain.UseStorage
+import uz.personal.cleanarchitectureandroid.data.storage.sharedPrefMain.models.User
 import uz.personal.cleanarchitectureandroid.domain.modules.SaveUserNameParam
 import uz.personal.cleanarchitectureandroid.domain.modules.UserName
 import uz.personal.cleanarchitectureandroid.domain.repository.UserRepository
@@ -18,5 +18,6 @@ class UserRepositoryImpl(private var userStorage: UseStorage) : UserRepository {
         val user = userStorage.get()
         return UserName(name = user.firstName, surname = user.lastName)
     }
+
 
 }

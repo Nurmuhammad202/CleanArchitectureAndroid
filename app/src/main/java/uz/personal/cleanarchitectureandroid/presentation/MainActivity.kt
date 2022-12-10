@@ -1,16 +1,13 @@
 package uz.personal.cleanarchitectureandroid.presentation
 
+import android.content.ContentValues.TAG
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.ViewModelProvider
 import dagger.hilt.android.AndroidEntryPoint
-import uz.personal.cleanarchitectureandroid.data.repository.UserRepositoryImpl
-import uz.personal.cleanarchitectureandroid.data.storage.sharedPref.SharedPrefUseStorage
 import uz.personal.cleanarchitectureandroid.databinding.ActivityMainBinding
-import uz.personal.cleanarchitectureandroid.domain.modules.SaveUserNameParam
-import uz.personal.cleanarchitectureandroid.domain.useCase.GetUserNameUserCase
-import uz.personal.cleanarchitectureandroid.domain.useCase.SaveUserNameUserCase
+import uz.personal.cleanarchitectureandroid.domain.modules.SmartPhoneDomain
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
@@ -29,6 +26,14 @@ class MainActivity : AppCompatActivity() {
                 txtData.text = text
             }
 
+            viewModel.roomData.observe(this@MainActivity) {
+                Log.d(TAG, "onCreate:dsfdf $it")
+            }
+
+            viewModel.serverResponse.observe(this@MainActivity) {
+                Log.d(TAG, "onCreate: dsfdsf $it")
+            }
+
             btnSaveData.setOnClickListener {
                 val text = editSave.text.toString()
                 viewModel.save(text)
@@ -37,6 +42,22 @@ class MainActivity : AppCompatActivity() {
             btnReadData.setOnClickListener {
                 viewModel.load()
             }
+
+            btnGetRoom.setOnClickListener {
+                viewModel.roomGet()
+            }
+
+            btnSaveRoom.setOnClickListener {
+                val smartPhoneDomain = SmartPhoneDomain()
+                smartPhoneDomain.name = "Ipone"
+                smartPhoneDomain.price = 500.0
+                viewModel.roomSave(smartPhoneDomain = smartPhoneDomain)
+            }
+
+            btnGetServer.setOnClickListener {
+                viewModel.apiUseCase(-55.0, 69.29289918433346)
+            }
+
         }
     }
 }

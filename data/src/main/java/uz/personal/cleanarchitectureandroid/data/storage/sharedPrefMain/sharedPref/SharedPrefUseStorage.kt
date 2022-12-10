@@ -1,8 +1,8 @@
-package uz.personal.cleanarchitectureandroid.data.storage.sharedPref
+package uz.personal.cleanarchitectureandroid.data.storage.sharedPrefMain.sharedPref
 
 import android.content.Context
-import uz.personal.cleanarchitectureandroid.data.storage.UseStorage
-import uz.personal.cleanarchitectureandroid.data.storage.models.User
+import uz.personal.cleanarchitectureandroid.data.storage.sharedPrefMain.UseStorage
+import uz.personal.cleanarchitectureandroid.data.storage.sharedPrefMain.models.User
 
 private const val SHARED_PREF_NAME = "SHARED_PREF_KEY"
 private const val SHARED_NAME_KEY = "firstName"
