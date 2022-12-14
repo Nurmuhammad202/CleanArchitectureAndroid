@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Clean Architecture Android</string>
+    <string name="mapbox_access_token" translatable="false">sk.eyJ1IjoidXpkcml2ZXIiLCJhIjoiY2wwajkwN3U1MGFoNDNkcDZkZ3l4ejZuZCJ9.6nDTOCzVfOHTJRo991U9vg</string>
 </resources>

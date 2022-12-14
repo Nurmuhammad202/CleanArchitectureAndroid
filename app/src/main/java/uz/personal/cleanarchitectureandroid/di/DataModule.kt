@@ -21,8 +21,6 @@ import uz.personal.cleanarchitectureandroid.domain.repository.SmartPhoneReposito
 import uz.personal.cleanarchitectureandroid.domain.repository.UserRepository
 import javax.inject.Singleton
 
-private const val BASE_URL_SERVERS = "http://botmaker.uz:7777/server/"
-
 @Module
 @InstallIn(SingletonComponent::class)
 class DataModule {

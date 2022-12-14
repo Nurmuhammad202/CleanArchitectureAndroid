@@ -7,4 +7,6 @@ interface UserRepository {
     fun saveName(saveUserNameParam: SaveUserNameParam): Boolean
 
     fun getUserData(): UserName
+
+    fun saveServerDetails(serverUrl: String, serverSocket: String): Boolean
 }

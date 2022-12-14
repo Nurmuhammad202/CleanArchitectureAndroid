@@ -67,4 +67,9 @@ dependencies {
     // Kotlin Extensions and Coroutines support for Room
     implementation "androidx.room:room-ktx:2.4.3"
 
+    //Mapbox implementation
+    implementation('com.mapbox.maps:android:10.9.1') {
+        exclude group: 'group_name', module: 'module_name'
+    }
+
 }

@@ -7,5 +7,5 @@ data class Data(
     val name: String,
     val socket: String,
     val url: String,
-    val client_api_socket: String,
+    val client_api_socket: String
 )

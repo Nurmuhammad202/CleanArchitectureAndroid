@@ -34,6 +34,7 @@ class MainActivity : AppCompatActivity() {
                 Log.d(TAG, "onCreate: dsfdsf $it")
             }
 
+
             btnSaveData.setOnClickListener {
                 val text = editSave.text.toString()
                 viewModel.save(text)
