@@ -1,4 +1,4 @@
-package uz.personal.cleanarchitectureandroid.domain.useCase
+package uz.personal.cleanarchitectureandroid.domain.useCase.room
 
 import uz.personal.cleanarchitectureandroid.domain.modules.SmartPhoneDomain
 import uz.personal.cleanarchitectureandroid.domain.repository.SmartPhoneRepository

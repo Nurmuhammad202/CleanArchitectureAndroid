@@ -3,6 +3,7 @@ package uz.personal.cleanarchitectureandroid.presentation
 import android.content.ContentValues.TAG
 import android.os.Bundle
 import android.util.Log
+import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import dagger.hilt.android.AndroidEntryPoint
@@ -32,6 +33,12 @@ class MainActivity : AppCompatActivity() {
 
             viewModel.serverResponse.observe(this@MainActivity) {
                 Log.d(TAG, "onCreate: dsfdsf $it")
+                Toast.makeText(this@MainActivity, it.toString(), Toast.LENGTH_SHORT).show()
+                viewModel.getServerDetails()
+            }
+
+            viewModel.getServerLink.observe(this@MainActivity) {
+                Toast.makeText(this@MainActivity, "$it", Toast.LENGTH_SHORT).show()
             }
 
 

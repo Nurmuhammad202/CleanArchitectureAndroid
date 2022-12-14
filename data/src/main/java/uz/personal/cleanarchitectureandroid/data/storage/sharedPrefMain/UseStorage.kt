@@ -1,7 +1,7 @@
 package uz.personal.cleanarchitectureandroid.data.storage.sharedPrefMain
 
-import uz.personal.cleanarchitectureandroid.data.storage.sharedPrefMain.models.ServerDetails
 import uz.personal.cleanarchitectureandroid.data.storage.sharedPrefMain.models.User
+import uz.personal.cleanarchitectureandroid.domain.modules.sharedModel.ServerDetailModel
 
 interface UseStorage {
     fun save(saveUserNameParam: User): Boolean
@@ -10,5 +10,5 @@ interface UseStorage {
 
     fun saveServer(serverLink: String, serverSocket: String): Boolean
 
-    fun getServer(): ServerDetails
+    fun getServer(): ServerDetailModel
 }

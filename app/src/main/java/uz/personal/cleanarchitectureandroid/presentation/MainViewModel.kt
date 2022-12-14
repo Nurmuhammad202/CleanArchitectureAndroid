@@ -9,7 +9,15 @@ import kotlinx.coroutines.launch
 import uz.personal.cleanarchitectureandroid.data.remote.models.GetServerModel
 import uz.personal.cleanarchitectureandroid.domain.modules.SaveUserNameParam
 import uz.personal.cleanarchitectureandroid.domain.modules.SmartPhoneDomain
-import uz.personal.cleanarchitectureandroid.domain.useCase.*
+import uz.personal.cleanarchitectureandroid.domain.modules.sharedModel.ServerDetailModel
+import uz.personal.cleanarchitectureandroid.domain.useCase.remote.ApiUseCase
+import uz.personal.cleanarchitectureandroid.domain.useCase.room.RoomDeleteSmartPhoneUseCase
+import uz.personal.cleanarchitectureandroid.domain.useCase.room.RoomGetSmartPhoneUseCase
+import uz.personal.cleanarchitectureandroid.domain.useCase.room.RoomSaveSmartPhoneUseCase
+import uz.personal.cleanarchitectureandroid.domain.useCase.room.RoomUpdateSmartPhoneUseCase
+import uz.personal.cleanarchitectureandroid.domain.useCase.sharedPref.GetUserNameUserCase
+import uz.personal.cleanarchitectureandroid.domain.useCase.sharedPref.SaveUserNameUserCase
+import uz.personal.cleanarchitectureandroid.domain.useCase.sharedPref.SharedPrefUseCase
 import javax.inject.Inject
 
 @HiltViewModel
@@ -21,6 +29,7 @@ class MainViewModel @Inject constructor(
     private var roomDeleteSmartPhoneUseCase: RoomDeleteSmartPhoneUseCase,
     private var roomGetSmartPhoneUseCase: RoomGetSmartPhoneUseCase,
     private var apiUseCase: ApiUseCase,
+    private var sharedPrefUseCase: SharedPrefUseCase,
 ) : ViewModel() {
 
     private val _result = MutableLiveData<String>()
@@ -29,8 +38,8 @@ class MainViewModel @Inject constructor(
     private val _roomData = MutableLiveData<ArrayList<SmartPhoneDomain>>()
     val roomData: LiveData<ArrayList<SmartPhoneDomain>> = _roomData
 
-    private val _serResponse = MutableLiveData<GetServerModel>()
-    val serverResponse: LiveData<GetServerModel> = _serResponse
+    private val _serResponse = MutableLiveData<Boolean>()
+    val serverResponse: LiveData<Boolean> = _serResponse
 
     fun save(text: String) {
         val saveUserNameParam = SaveUserNameParam(text)
@@ -61,10 +70,14 @@ class MainViewModel @Inject constructor(
 
     fun apiUseCase(lat: Double, lon: Double) = viewModelScope.launch {
         apiUseCase.executeGetServerLink(lat = lat, lon = lon).let {
-            if (it is GetServerModel) {
-                _serResponse.value = it
-            }
+            _serResponse.value = sharedPrefUseCase.saveServerDetails(it)
         }
+    }
+
+    private var _getSerVerLink = MutableLiveData<ServerDetailModel>()
+    val getServerLink = _getSerVerLink
+    fun getServerDetails() = viewModelScope.launch {
+        _getSerVerLink.value = sharedPrefUseCase.getServerDetails()
     }
 
 }

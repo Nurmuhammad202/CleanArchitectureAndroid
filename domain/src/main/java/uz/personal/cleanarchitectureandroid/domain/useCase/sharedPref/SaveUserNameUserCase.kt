@@ -1,4 +1,4 @@
-package uz.personal.cleanarchitectureandroid.domain.useCase
+package uz.personal.cleanarchitectureandroid.domain.useCase.sharedPref
 
 import uz.personal.cleanarchitectureandroid.domain.modules.SaveUserNameParam
 import uz.personal.cleanarchitectureandroid.domain.repository.UserRepository

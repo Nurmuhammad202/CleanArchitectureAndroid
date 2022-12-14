@@ -4,14 +4,18 @@ import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.components.ViewModelComponent
-import uz.personal.cleanarchitectureandroid.data.remote.ApiInterface
-import uz.personal.cleanarchitectureandroid.data.repository.RetrofitRepositoryIml
-import uz.personal.cleanarchitectureandroid.data.repository.UserRepositoryImpl
 import uz.personal.cleanarchitectureandroid.domain.repository.RetrofitRepository
 import uz.personal.cleanarchitectureandroid.domain.repository.SmartPhoneRepository
 import uz.personal.cleanarchitectureandroid.domain.repository.UserRepository
 import uz.personal.cleanarchitectureandroid.domain.useCase.*
-import javax.inject.Singleton
+import uz.personal.cleanarchitectureandroid.domain.useCase.remote.ApiUseCase
+import uz.personal.cleanarchitectureandroid.domain.useCase.room.RoomDeleteSmartPhoneUseCase
+import uz.personal.cleanarchitectureandroid.domain.useCase.room.RoomGetSmartPhoneUseCase
+import uz.personal.cleanarchitectureandroid.domain.useCase.room.RoomSaveSmartPhoneUseCase
+import uz.personal.cleanarchitectureandroid.domain.useCase.room.RoomUpdateSmartPhoneUseCase
+import uz.personal.cleanarchitectureandroid.domain.useCase.sharedPref.GetUserNameUserCase
+import uz.personal.cleanarchitectureandroid.domain.useCase.sharedPref.SaveUserNameUserCase
+import uz.personal.cleanarchitectureandroid.domain.useCase.sharedPref.SharedPrefUseCase
 
 @Module
 @InstallIn(ViewModelComponent::class)
@@ -52,6 +56,11 @@ class DomainModule {
         return ApiUseCase(retrofitRepository = retrofitRepository)
     }
 
+
+    @Provides
+    fun provideSharedPref(userRepository: UserRepository): SharedPrefUseCase {
+        return SharedPrefUseCase(userRepository = userRepository)
+    }
 
 
 }
